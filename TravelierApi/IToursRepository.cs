@@ -2,9 +2,10 @@
 {
     public interface IToursRepository
     {
-        public IEnumerable<Tours> GetAllTours();
+        public bool ToursExists(int id);
+        public ICollection<Tours> GetAllTours();
         public Tours GetToursById(int id);
-        public bool AddTours(Tours tours);
+        public bool CreateTours(Tours tours);
         public bool UpdateTours(Tours tours);
         public bool DeleteTours(int id);
         public bool Save();
