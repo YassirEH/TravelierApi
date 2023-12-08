@@ -1,0 +1,6 @@
+@TravelierApi_HostAddress = http://localhost:5282
+
+GET {{TravelierApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
