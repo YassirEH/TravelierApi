@@ -1,5 +1,6 @@
 ﻿namespace TravelierApi
 {
+
     public class ToursRepository : IToursRepository
     {
         private readonly DataContext _context;
@@ -41,9 +42,25 @@
             return _context.Tours.Any(t => t.Id == id);
         }
 
-        public bool UpdateTours(Tours tours)
+        public bool UpdateTours(int tourId, Tours tours)
         {
-            _context.Tours.Update(tours);
+
+            // Check if tour exists
+            var existingTour = _context.Tours.Find(tourId);
+
+            // Update existing tour with new data
+            existingTour.Name = tours.Name;
+            existingTour.Location = tours.Location;
+            existingTour.Description = tours.Description;
+            existingTour.Image = tours.Image;
+            existingTour.Departure = tours.Departure;
+            existingTour.Return = tours.Return;
+            existingTour.Price = tours.Price;
+            existingTour.Country = tours.Country;
+
+            // Update the existing tour in the context
+            _context.Tours.Update(existingTour);
+
             return Save();
         }
 
